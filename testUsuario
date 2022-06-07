@@ -1,0 +1,44 @@
+package test.java.muestras;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import main.java.muestras.TipoDeOpinion;
+import main.java.usuarios.Usuario;
+
+class UsuarioTest {
+	Usuario user1;
+	Usuario user2;
+	Usuario user3;
+	
+	@BeforeEach
+    void setUp() {
+		user1 = new Usuario(123, "jose Marquez");
+		user2 = new Usuario(124, "maria Rodriguez");
+		user3 = new Usuario(125, "martin Benitez");
+		user2.opinarDeMuestraN(001, TipoDeOpinion.ChincheFoliada);
+	}
+	
+	@Test
+	void usuarioBienCreadoTest() {
+		String nombre= user1.getNombre();
+		Integer id = user1.getId();
+		Integer cantOp = user1.getCantOpiniones();
+		Integer cantP = user1.getCantPublicaciones();
+		assertEquals(nombre, "jose Marquez");
+		assertEquals(id, 123);
+		assertEquals(cantOp, 0);
+		assertEquals(cantP, 0);
+	}
+	@Test
+	void usuarioOpinaUnaVezTest() {
+		
+		Integer cantOp = user2.getCantOpiniones();
+		Integer cantP = user2.getCantPublicaciones();
+		assertEquals(cantOp, 1);
+		assertEquals(cantP, 0);
+	}
+}
